@@ -1,1 +1,0 @@
-{"version":3,"sources":["ImageList.css"],"names":[],"mappings":"AAAA,WACI,YAAY,CACZ,yDAEJ,CACA,eACI,WAAW,CACX,YAAY,CACZ,WACJ","file":"main.6ec752a4.chunk.css","sourcesContent":[".ImageList{\r\n    display:grid;\r\n    grid-template-columns: repeat(auto-fill,minmax(250px,1fr));\r\n    \r\n}\r\n.ImageList img {\r\n    width:250px;\r\n    padding:10px;\r\n    margin:10px;\r\n}"]}
