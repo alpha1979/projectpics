@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Unsplash from '../src/api/UnspalshApi';
+import SearchBar from './components/SearchBar';
+import ImageList from '../src/components/Images/ImageList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component{
+    state ={
+        images : []
+    }
+    async onSearchSubmit(term){
+       const response = await Unsplash.get('/search/photos',{
+            params: {query:term}
+            
+        });
+        this.setState({images:response.data.results});
+       
+        
+    }
+    showImageHandler=()=>{
+        this.state.images.map((image)=>{
+            return <div>{image.urls.thumb}</div>
+        })
+    }
+    render(){
+        return(
+            <div className="ui container" style={{marginTop:"10px"}}>
+                <SearchBar onSubmit={e=>this.onSearchSubmit(e)} />
+               
+                <ImageList images={this.state.images}/>
+            </div>
+            )
+        }
 }
-
 export default App;
